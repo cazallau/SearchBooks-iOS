@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,13 +16,44 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Nuv-Ba-aNA">
-                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="BookCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookCell" rowHeight="100" id="Nuv-Ba-aNA" customClass="BookCell" customModule="Books" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nuv-Ba-aNA" id="KNl-H9-nMw">
-                                    <frame key="frameInset" width="375" height="43"/>
+                                    <frame key="frameInset" width="375" height="99"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="L6G-Tc-CFW"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tph-dX-Y9x">
+                                            <fontDescription key="fontDescription" name="AvenirNext-BoldItalic" family="Avenir Next" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k96-jb-7VW">
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="k96-jb-7VW" firstAttribute="leading" secondItem="L6G-Tc-CFW" secondAttribute="trailing" constant="15" id="6Bm-fA-4lo"/>
+                                        <constraint firstItem="L6G-Tc-CFW" firstAttribute="leading" secondItem="KNl-H9-nMw" secondAttribute="leading" constant="10" id="6S6-Kc-TUZ"/>
+                                        <constraint firstItem="L6G-Tc-CFW" firstAttribute="centerX" secondItem="KNl-H9-nMw" secondAttribute="centerX" constant="-133.5" id="GFV-Be-HrU"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="k96-jb-7VW" secondAttribute="trailing" constant="20" id="Gdf-IA-KY1"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="k96-jb-7VW" secondAttribute="bottom" constant="21" id="IIh-3y-bXX"/>
+                                        <constraint firstItem="Tph-dX-Y9x" firstAttribute="top" secondItem="KNl-H9-nMw" secondAttribute="topMargin" id="Q46-NQ-DOp"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Tph-dX-Y9x" secondAttribute="trailing" constant="20" id="dCT-sM-Dbq"/>
+                                        <constraint firstItem="L6G-Tc-CFW" firstAttribute="top" secondItem="KNl-H9-nMw" secondAttribute="topMargin" constant="-7" id="dMs-um-bye"/>
+                                        <constraint firstItem="L6G-Tc-CFW" firstAttribute="bottom" secondItem="KNl-H9-nMw" secondAttribute="bottomMargin" id="uy7-rp-B3q"/>
+                                        <constraint firstItem="Tph-dX-Y9x" firstAttribute="leading" secondItem="L6G-Tc-CFW" secondAttribute="trailing" constant="15" id="v5F-XS-LSj"/>
+                                        <constraint firstItem="k96-jb-7VW" firstAttribute="top" secondItem="Tph-dX-Y9x" secondAttribute="bottom" constant="17.5" id="vCG-pD-9ua"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="author" destination="k96-jb-7VW" id="HAl-U9-2z2"/>
+                                    <outlet property="imageBook" destination="L6G-Tc-CFW" id="tcG-zP-ybc"/>
+                                    <outlet property="title" destination="Tph-dX-Y9x" id="DgD-sJ-O4h"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
