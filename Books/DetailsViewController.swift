@@ -18,8 +18,15 @@ class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = book.title
-        APIDownloadImage.downloadImage(book.image, inView: imageBook)
+        let label = UILabel(frame: CGRect(x:0, y:0, width:400, height:50))
+        label.backgroundColor = UIColor.clear
+        label.numberOfLines = 2
+        label.font = UIFont.boldSystemFont(ofSize: 16.0)
+        label.textAlignment = .center
+        label.textColor = UIColor.black
+        label.text = book.title
+        self.navigationItem.titleView = label
+        ImageDownloader.downloadImage(book.image, inView: imageBook)
         authorLabel.text = book.author
         dateLabel.text = book.date
         detailText.text = book.descripcion
