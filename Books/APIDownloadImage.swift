@@ -2,7 +2,7 @@
 //  APIDownloadImage.swift
 //  Books
 //
-//  Created by Gema Beltran on 31/3/17.
+//  Created by Antonio Jesus Cazalla Ureña on 31/3/17.
 //  Copyright © 2017 Antonio Jesus Cazalla. All rights reserved.
 //
 
