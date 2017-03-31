@@ -17,8 +17,8 @@ class DetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let label = UILabel(frame: CGRect(x:0, y:0, width:400, height:50))
+
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 400, height: 50))
         label.backgroundColor = UIColor.clear
         label.numberOfLines = 2
         label.font = UIFont.boldSystemFont(ofSize: 16.0)

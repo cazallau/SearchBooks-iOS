@@ -12,7 +12,7 @@ class BookTableViewController: UITableViewController {
     var listBook: [Book] = []
     var searchController: UISearchController!
     let apiClient: APICLient = APICLient()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
@@ -23,10 +23,10 @@ class BookTableViewController: UITableViewController {
         self.searchController.dimsBackgroundDuringPresentation = false
         search(name: "Eventos")
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetails"{
-            if let indexPath = self.tableView.indexPathForSelectedRow{
+        if segue.identifier == "showDetails" {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
                 let destinationController = segue.destination as! DetailsViewController
                 destinationController.book = self.listBook[indexPath.row]
                 let backItem = UIBarButtonItem()
@@ -58,7 +58,7 @@ class BookTableViewController: UITableViewController {
 }
 
 private extension BookTableViewController {
-    
+
     func search(name: String) {
         apiClient.search(name: name) { books in
             self.listBook = books

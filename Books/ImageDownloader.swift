@@ -15,18 +15,18 @@ class ImageDownloader {
             print("😱 Error in url")
             return
         }
-        
+
         let task = URLSession.shared.dataTask(with: url) { responseData, response, error in
             guard error == nil, let data = responseData else {
                 print("Error")
                 return
             }
-            
+
             DispatchQueue.main.async {
                 inView.image = UIImage(data: data)
             }
         }
-        
+
         task.resume()
     }
 }
