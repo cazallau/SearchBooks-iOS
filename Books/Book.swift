@@ -7,12 +7,11 @@
 //
 
 import Foundation
-import Foundation
+
 class Book {
     var descripcion: String?
     var title: String?
     var image: String?
     var author: String?
     var date: String?
-    
 }
