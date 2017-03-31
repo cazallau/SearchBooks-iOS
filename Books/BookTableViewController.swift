@@ -26,12 +26,10 @@ class BookTableViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetails" {
+            searchController.dismiss(animated: true, completion: nil)
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let destinationController = segue.destination as! DetailsViewController
                 destinationController.book = self.listBook[indexPath.row]
-                let backItem = UIBarButtonItem()
-                backItem.title = "Back"
-                destinationController.navigationItem.backBarButtonItem = backItem
             }
         }
     }
