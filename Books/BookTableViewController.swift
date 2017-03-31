@@ -2,100 +2,83 @@
 //  BookTableViewController.swift
 //  Books
 //
-//  Created by Gema Beltran on 30/3/17.
+//  Created by Antonio Jesus Cazalla Ureña on 30/3/17.
 //  Copyright © 2017 Antonio Jesus Cazalla. All rights reserved.
 //
 
 import UIKit
 
 class BookTableViewController: UITableViewController {
-    var listBook : [Book] = []
+    var listBook: [Book] = []
+    var searchController: UISearchController!
+    let apiClient: APICLient = APICLient()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        search(name: "50")
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.tableView.tableFooterView = UIView()
+        self.searchController = UISearchController(searchResultsController: nil)
+        self.tableView.tableHeaderView = self.searchController.searchBar
+        self.searchController.searchResultsUpdater = self
+        self.searchController.delegate = self
+        self.searchController.dimsBackgroundDuringPresentation = false
+        search(name: "Eventos")
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetails"{
+            if let indexPath = self.tableView.indexPathForSelectedRow{
+                let destinationController = segue.destination as! DetailsViewController
+                destinationController.book = self.listBook[indexPath.row]
+                let backItem = UIBarButtonItem()
+                backItem.title = "Back"
+                destinationController.navigationItem.backBarButtonItem = backItem
+            }
+        }
     }
-    
+
     // MARK: - Table view data source
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return self.listBook.count
+        return listBook.count
     }
-    
-    
-    
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "mycell", for: indexPath) as! BookCellView
+        let book = self.listBook[indexPath.row]
+        APIDownloadImage.downloadImage(book.image, inView: cell.imageBook)
+        cell.titleLabel.text = book.title
+        cell.authorLabel.text = book.author
+
+        return cell
+    }
 }
 
 private extension BookTableViewController {
     
-    func search(name : String){
-        let url = URL(string: "https://www.googleapis.com/books/v1/volumes?q=" + name)
-        
-        URLSession.shared.dataTask(with: url!, completionHandler: {
-            (data, response, error) in
-            if(error != nil){
-                print("error")
-            }else{
-                do{
-                    
-                    
-                    let json = try JSONSerialization.jsonObject(with: data!, options:.allowFragments) as! [String : AnyObject]
-                    
-                    if let books = json["items"] as? [[String: AnyObject]]{
-                        for books in books {
-                            var newBook: Book = Book()
-                            
-                            if let volum = books["volumeInfo"] as? [String : AnyObject] {
-                                newBook.title = volum["title"] as? String
-                                newBook.descripcion = volum["description"] as? String
-                                
-                                if let author = volum["authors"] as? [String]{
-                                    var auth = ""
-                                    for author in author {
-                                        auth = auth + (author as? String)! + ","
-                                    }
-                                    newBook.author = auth
-                                }
-                                
-                                if let image = volum["imageLinks"] as? [String : AnyObject] {
-                                    
-                                    newBook.image = image["thumbnail"] as? String
-                                }
-                                
-                                newBook.date = volum["publishedDate"] as? String
-                                
-                            }
-                            self.listBook.append(newBook)
-                        }
-                    }
-                    
-                    OperationQueue.main.addOperation({
-                        //print(json["products"])
-                        
-                    })
-                    
-                }catch let error as NSError{
-                    print(error)
-                }
-            }
-        }).resume()
-        
+    func search(name: String) {
+        apiClient.search(name: name) { books in
+            self.listBook = books
+            self.tableView.reloadData()
+        }
+    }
+}
+
+extension BookTableViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+
+        if let searchText = searchController.searchBar.text {
+            search(name: searchText)
+        }
+    }
+}
+
+extension BookTableViewController: UISearchControllerDelegate {
+    func didDismissSearchController(_ searchController: UISearchController) {
+        search(name: "eventos")
     }
 }
 
