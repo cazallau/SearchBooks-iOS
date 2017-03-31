@@ -16,7 +16,7 @@
 		D15AD0841E8D8C0200033DF9 /* BookCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15AD0831E8D8C0200033DF9 /* BookCellView.swift */; };
 		D15AD0861E8DD2EA00033DF9 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15AD0851E8DD2EA00033DF9 /* DetailsViewController.swift */; };
 		D15AD0881E8DD7FA00033DF9 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15AD0871E8DD7FA00033DF9 /* APIClient.swift */; };
-		D15AD08C1E8E558700033DF9 /* APIDownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15AD08B1E8E558700033DF9 /* APIDownloadImage.swift */; };
+		D15AD08C1E8E558700033DF9 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15AD08B1E8E558700033DF9 /* ImageDownloader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +31,7 @@
 		D15AD0831E8D8C0200033DF9 /* BookCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCellView.swift; sourceTree = "<group>"; };
 		D15AD0851E8DD2EA00033DF9 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		D15AD0871E8DD7FA00033DF9 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
-		D15AD08B1E8E558700033DF9 /* APIDownloadImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIDownloadImage.swift; sourceTree = "<group>"; };
+		D15AD08B1E8E558700033DF9 /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,17 +64,15 @@
 		D15AD0681E8D737C00033DF9 /* Books */ = {
 			isa = PBXGroup;
 			children = (
+				D15AD08E1E8E609300033DF9 /* client */,
+				D15AD08D1E8E5F0000033DF9 /* controller */,
 				D15AD0801E8D75A600033DF9 /* view */,
 				D15AD07D1E8D749500033DF9 /* model */,
 				D15AD0691E8D737C00033DF9 /* AppDelegate.swift */,
-				D15AD0871E8DD7FA00033DF9 /* APIClient.swift */,
-				D15AD0851E8DD2EA00033DF9 /* DetailsViewController.swift */,
-				D15AD07B1E8D744200033DF9 /* BookTableViewController.swift */,
 				D15AD06D1E8D737C00033DF9 /* Main.storyboard */,
 				D15AD0701E8D737C00033DF9 /* Assets.xcassets */,
 				D15AD0721E8D737C00033DF9 /* LaunchScreen.storyboard */,
 				D15AD0751E8D737C00033DF9 /* Info.plist */,
-				D15AD08B1E8E558700033DF9 /* APIDownloadImage.swift */,
 			);
 			path = Books;
 			sourceTree = "<group>";
@@ -93,6 +91,24 @@
 				D15AD0831E8D8C0200033DF9 /* BookCellView.swift */,
 			);
 			name = view;
+			sourceTree = "<group>";
+		};
+		D15AD08D1E8E5F0000033DF9 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				D15AD07B1E8D744200033DF9 /* BookTableViewController.swift */,
+				D15AD0851E8DD2EA00033DF9 /* DetailsViewController.swift */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		D15AD08E1E8E609300033DF9 /* client */ = {
+			isa = PBXGroup;
+			children = (
+				D15AD0871E8DD7FA00033DF9 /* APIClient.swift */,
+				D15AD08B1E8E558700033DF9 /* ImageDownloader.swift */,
+			);
+			name = client;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,7 +189,7 @@
 				D15AD07C1E8D744200033DF9 /* BookTableViewController.swift in Sources */,
 				D15AD06A1E8D737C00033DF9 /* AppDelegate.swift in Sources */,
 				D15AD0841E8D8C0200033DF9 /* BookCellView.swift in Sources */,
-				D15AD08C1E8E558700033DF9 /* APIDownloadImage.swift in Sources */,
+				D15AD08C1E8E558700033DF9 /* ImageDownloader.swift in Sources */,
 				D15AD0861E8DD2EA00033DF9 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,6 +352,7 @@
 				D15AD07A1E8D737C00033DF9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

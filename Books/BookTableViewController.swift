@@ -49,7 +49,7 @@ class BookTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mycell", for: indexPath) as! BookCellView
         let book = self.listBook[indexPath.row]
-        APIDownloadImage.downloadImage(book.image, inView: cell.imageBook)
+        ImageDownloader.downloadImage(book.image, inView: cell.imageBook)
         cell.titleLabel.text = book.title
         cell.authorLabel.text = book.author
 

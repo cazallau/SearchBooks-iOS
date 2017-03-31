@@ -1,5 +1,5 @@
 //
-//  APIDownloadImage.swift
+//  ImageDownloader.swift
 //  Books
 //
 //  Created by Antonio Jesus Cazalla Ureña on 31/3/17.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class APIDownloadImage {
+class ImageDownloader {
     static func downloadImage(_ uri: String?, inView: UIImageView) {
         guard let uri = uri, let url = URL(string: uri) else {
             print("😱 Error in url")
